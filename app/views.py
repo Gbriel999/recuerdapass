@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages  # <-- AÑADIR ESTE IMPORT
-
 from .forms import RegisterForm, LoginForm, CredencialForm
 from .models import Credencial
 
@@ -46,8 +45,6 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-
-# --- VISTA UNIFICADA (ACTUALIZADA CON EL MENSAJE) ---
 @login_required
 def agregar_credencial_view(request, categoria):
     nombres_categorias = {
@@ -79,3 +76,20 @@ def agregar_credencial_view(request, categoria):
         'titulo_pagina': f"Agregar Contraseña de {nombres_categorias[categoria]}"
     }
     return render(request, 'app/agregar_formulario.html', contexto)
+
+@login_required
+def organization_view(request):
+    # Filtrar credenciales solo del usuario logueado
+    credenciales = Credencial.objects.filter(usuario_propietario=request.user)
+
+    # Agruparlas manualmente en un diccionario por categoría
+    categorias = {
+        'Banco': credenciales.filter(categoria='banco'),
+        'Red Social': credenciales.filter(categoria='red_social'),
+        'Correo Electrónico': credenciales.filter(categoria='correo'),
+    }
+
+    contexto = {
+        'categorias': categorias
+    }
+    return render(request, 'app/ver.html', contexto)
