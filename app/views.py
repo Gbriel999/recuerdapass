@@ -62,9 +62,6 @@ def agregar_credencial_view(request, categoria):
             instancia.usuario_propietario = request.user
             instancia.categoria = categoria
             instancia.save()
-            
-            # --- LÍNEA CLAVE AÑADIDA ---
-            # Creamos un mensaje de éxito que se mostrará en la siguiente página.
             messages.success(request, '¡Tu contraseña se ha guardado correctamente!')
             
             return redirect('main_menu')
