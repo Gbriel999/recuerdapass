@@ -1,12 +1,26 @@
 {% extends 'app/base.html' %}
+
 {% block content %}
 <div class="container">
-    <h2>Organización de Contraseñas</h2>
-    <ul>
-        <li>Redes sociales</li>
-        <li>Bancos</li>
-        <li>Correos</li>
-    </ul>
-    <p><a href="{% url 'main_menu' %}">Volver al menú</a></p>
+    <h2>Mis Contraseñas Organizadas</h2>
+
+    {% for nombre_categoria, lista in categorias.items %}
+        <h3>{{ nombre_categoria }}</h3>
+        {% if lista %}
+            <ul>
+                {% for item in lista %}
+                    <li>
+                        <strong>{{ item.nombre_servicio }}</strong><br>
+                        Usuario: {{ item.identificador_usuario }}<br>
+                        Contraseña: {{ item.contrasena }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No hay credenciales en esta categoría.</p>
+        {% endif %}
+    {% endfor %}
+
+    <p><a href="{% url 'main_menu' %}">Volver al menú principal</a></p>
 </div>
 {% endblock %}
