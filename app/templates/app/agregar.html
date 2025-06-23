@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Seleccione una categoría para guardar su pass</h2>
+    <ul>
+        <li><a href="{% url 'agregar_credencial' 'banco' %}">Bancos</a></li>
+        <li><a href="{% url 'agregar_credencial' 'red_social' %}">Redes sociales</a></li>
+        <li><a href="{% url 'agregar_credencial' 'correo' %}">Correos</a></li>
+    </ul>
+    <p><a href="{% url 'main_menu' %}">Volver al menú</a></p>
+</div>
+{% endblock %}

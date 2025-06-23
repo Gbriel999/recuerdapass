@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>RecuerdaPass</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/estilos.css' %}">
+</head>
+<body>
+
+    <!-- AÑADIR ESTE BLOQUE PARA MOSTRAR LOS MENSAJES -->
+    {% if messages %}
+        <div class="messages-container">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <!-- FIN DEL BLOQUE DE MENSAJES -->
+
+    {% block content %}{% endblock %}
+</body>
+</html>
