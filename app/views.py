@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages  # <-- AÑADIR ESTE IMPORT
+from django.contrib import messages
 from .forms import RegisterForm, LoginForm, CredencialForm
 from .models import Credencial
 
