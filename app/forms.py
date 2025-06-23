@@ -13,8 +13,6 @@ class LoginForm(AuthenticationForm):
     username = forms.CharField(label='Nombre de Usuario')
     password = forms.CharField(widget=forms.PasswordInput, label="Contraseña")
 
-
-# --- FORMULARIO UNIFICADO ---
 class CredencialForm(forms.ModelForm):
     contrasena = forms.CharField(widget=forms.PasswordInput, label="Contraseña")
 
